@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://x6yotk7wn6kj"]
+
+[node name="RedTower" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(34, -7)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+
+[node name="Node" type="Node" parent="."]

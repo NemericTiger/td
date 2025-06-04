@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://i1t7w2lgswf0"
-path="res://.godot/imported/towerDefense_tile285.png-741feb5907b49b82854514b05f6d9645.ctex"
+path="res://.godot/imported/towerDefense_tile285.png-ba3060ec8a6ff87202eabe002ed5ce6e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/PNG/Default size/towerDefense_tile285.png"
-dest_files=["res://.godot/imported/towerDefense_tile285.png-741feb5907b49b82854514b05f6d9645.ctex"]
+source_file="res://assets/td/PNG/Default size/towerDefense_tile285.png"
+dest_files=["res://.godot/imported/towerDefense_tile285.png-ba3060ec8a6ff87202eabe002ed5ce6e.ctex"]
 
 [params]
 

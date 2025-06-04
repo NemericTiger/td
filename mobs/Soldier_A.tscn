@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://d23h4gbet441u"]
 
 [ext_resource type="Script" uid="uid://c8oi7am2ddyc3" path="res://mobs/soldier_a.gd" id="1_0ax2f"]
-[ext_resource type="Texture2D" uid="uid://b607p001b0ruu" path="res://assets/PNG/Default size/towerDefense_tile245.png" id="1_841be"]
+[ext_resource type="Texture2D" uid="uid://b607p001b0ruu" path="res://assets/td/PNG/Default size/towerDefense_tile245.png" id="1_841be"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0ax2f"]
 radius = 13.1529
