@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://d030g132c5aww" path="res://assets/tanks/PNG/Retina/specialBarrel2_outline.png" id="5_ybfvv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rhpmq"]
-size = Vector2(72, 64)
+size = Vector2(104, 64)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1kvkb"]
 radius = 400.0
@@ -13,7 +13,7 @@ radius = 400.0
 script = ExtResource("1_1kvkb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-20, 0)
+position = Vector2(-4, 0)
 shape = SubResource("RectangleShape2D_rhpmq")
 
 [node name="SpecialBarrel2Outline2" type="Sprite2D" parent="."]
@@ -21,7 +21,7 @@ rotation = -1.5708
 scale = Vector2(2, 2)
 texture = ExtResource("5_ybfvv")
 
-[node name="Aim" type="Marker2D" parent="."]
+[node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(56, 0)
 
 [node name="Tower" type="Area2D" parent="."]
@@ -29,7 +29,7 @@ position = Vector2(56, 0)
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Tower"]
 shape = SubResource("CircleShape2D_1kvkb")
 
-[node name="BulletContainer" type="Node" parent="."]
+[node name="Node" type="Node" parent="."]
 
 [connection signal="body_entered" from="Tower" to="." method="_on_tower_body_entered"]
 [connection signal="body_exited" from="Tower" to="." method="_on_tower_body_exited"]
