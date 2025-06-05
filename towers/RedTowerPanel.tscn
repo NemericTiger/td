@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cvkvae2rrv2vs"]
+
+[ext_resource type="Script" uid="uid://bw73brjcwn3om" path="res://towers/red_tower_panel.gd" id="1_umrqr"]
+[ext_resource type="Texture2D" uid="uid://d030g132c5aww" path="res://assets/tanks/PNG/Retina/specialBarrel2_outline.png" id="2_64c76"]
+
+[node name="RedTowerPanel" type="Panel"]
+custom_minimum_size = Vector2(80, 80)
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_umrqr")
+
+[node name="SpecialBarrel2Outline" type="Sprite2D" parent="."]
+position = Vector2(40, 40)
+rotation = 3.14159
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("2_64c76")
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://x6yotk7wn6kj"]
+[gd_scene load_steps=6 format=3 uid="uid://x6yotk7wn6kj"]
 
 [ext_resource type="Script" uid="uid://bk804yw8uynbt" path="res://towers/red_tower.gd" id="1_1kvkb"]
 [ext_resource type="Texture2D" uid="uid://d030g132c5aww" path="res://assets/tanks/PNG/Retina/specialBarrel2_outline.png" id="5_ybfvv"]
@@ -8,6 +8,13 @@ size = Vector2(72, 64)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1kvkb"]
 radius = 400.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1kvkb"]
+bg_color = Color(0.992789, 0.367969, 0, 1)
+corner_radius_top_left = 400
+corner_radius_top_right = 400
+corner_radius_bottom_right = 400
+corner_radius_bottom_left = 400
 
 [node name="RedTower" type="StaticBody2D"]
 script = ExtResource("1_1kvkb")
@@ -30,6 +37,14 @@ position = Vector2(56, 0)
 shape = SubResource("CircleShape2D_1kvkb")
 
 [node name="BulletContainer" type="Node" parent="."]
+
+[node name="Area" type="Panel" parent="."]
+modulate = Color(0, 0, 0.313726, 0.313726)
+offset_left = -400.0
+offset_top = -400.0
+offset_right = 400.0
+offset_bottom = 400.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_1kvkb")
 
 [connection signal="body_entered" from="Tower" to="." method="_on_tower_body_entered"]
 [connection signal="body_exited" from="Tower" to="." method="_on_tower_body_exited"]
