@@ -1,6 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://x6yotk7wn6kj"]
+[gd_scene load_steps=18 format=3 uid="uid://x6yotk7wn6kj"]
 
 [ext_resource type="Script" uid="uid://bk804yw8uynbt" path="res://towers/red_tower.gd" id="1_1kvkb"]
+[ext_resource type="Texture2D" uid="uid://c8ag2x3qjhgfx" path="res://assets/td/PNG/Default size/towerDefense_tile110.png" id="3_teomk"]
+[ext_resource type="Texture2D" uid="uid://br8kbo3nvl78w" path="res://assets/td/PNG/Default size/towerDefense_tile297.png" id="4_0l2l6"]
+[ext_resource type="Texture2D" uid="uid://cark5rikwntyk" path="res://assets/td/PNG/Default size/towerDefense_tile296.png" id="5_57jmk"]
 [ext_resource type="Texture2D" uid="uid://d030g132c5aww" path="res://assets/tanks/PNG/Retina/specialBarrel2_outline.png" id="5_ybfvv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rhpmq"]
@@ -9,6 +12,21 @@ size = Vector2(72, 64)
 [sub_resource type="CircleShape2D" id="CircleShape2D_1kvkb"]
 radius = 400.0
 
+[sub_resource type="GDScript" id="GDScript_hqlww"]
+script/source = "extends CollisionShape2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	hide()
+
+func _draw() -> void:
+	var cen = Vector2(0,0)
+	var rad = get_parent().get_parent().range
+	var col = Color(0, 0, 1, 0.3)
+	draw_circle(cen, rad, col)
+"
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1kvkb"]
 bg_color = Color(0.992789, 0.367969, 0, 1)
 corner_radius_top_left = 400
@@ -16,7 +34,77 @@ corner_radius_top_right = 400
 corner_radius_bottom_right = 400
 corner_radius_bottom_left = 400
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hqlww"]
+bg_color = Color(0.129412, 0.12549, 0.117647, 0.866667)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.827859, 0.83748, 0.113269, 1)
+border_blend = true
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k3m8x"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_teomk"]
+bg_color = Color(0.0995288, 0.42416, 0.272712, 1)
+border_width_left = 15
+border_width_top = 15
+border_width_right = 15
+border_width_bottom = 15
+border_color = Color(0.267721, 0.61478, 0.331222, 1)
+border_blend = true
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0l2l6"]
+bg_color = Color(0.00518686, 0.506051, 0.672899, 1)
+border_width_left = 15
+border_width_top = 15
+border_width_right = 15
+border_width_bottom = 15
+border_color = Color(0.113725, 0.109804, 1, 1)
+border_blend = true
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_57jmk"]
+bg_color = Color(0.131071, 0.529805, 3.85046e-07, 1)
+border_width_left = 15
+border_width_top = 15
+border_width_right = 15
+border_width_bottom = 15
+border_color = Color(0.41049, 0.934216, 0.365241, 1)
+border_blend = true
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k3m8x"]
+bg_color = Color(0.996078, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nig4x"]
+bg_color = Color(0, 1, 0, 1)
+
+[sub_resource type="GDScript" id="GDScript_1kvkb"]
+script/source = "extends ProgressBar
+
+
+func _process(delta: float) -> void:
+	self.max_value = get_node(\"Timer\").wait_time
+	self.value = get_node(\"Timer\").time_left
+"
+
 [node name="RedTower" type="StaticBody2D"]
+input_pickable = true
 script = ExtResource("1_1kvkb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -35,16 +123,116 @@ position = Vector2(56, 0)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Tower"]
 shape = SubResource("CircleShape2D_1kvkb")
+script = SubResource("GDScript_hqlww")
 
 [node name="BulletContainer" type="Node" parent="."]
 
 [node name="Area" type="Panel" parent="."]
 modulate = Color(0, 0, 0.313726, 0.313726)
+self_modulate = Color(1, 1, 1, 0.313726)
 offset_left = -400.0
 offset_top = -400.0
 offset_right = 400.0
 offset_bottom = 400.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_1kvkb")
 
+[node name="Upgrade" type="Node" parent="."]
+
+[node name="Upgrade" type="Panel" parent="Upgrade"]
+offset_left = -320.0
+offset_top = 64.0
+offset_right = 320.0
+offset_bottom = 320.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_hqlww")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Upgrade/Upgrade"]
+layout_mode = 0
+offset_top = 32.0
+offset_right = 640.0
+offset_bottom = 157.0
+theme_override_constants/separation = 67
+alignment = 1
+
+[node name="Range" type="Button" parent="Upgrade/Upgrade/HBoxContainer"]
+custom_minimum_size = Vector2(125, 125)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_k3m8x")
+theme_override_styles/hover = SubResource("StyleBoxFlat_teomk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0l2l6")
+theme_override_styles/normal = SubResource("StyleBoxFlat_57jmk")
+
+[node name="Label" type="Label" parent="Upgrade/Upgrade/HBoxContainer/Range"]
+layout_mode = 0
+offset_top = 155.0
+offset_right = 125.0
+offset_bottom = 178.0
+text = "10000"
+horizontal_alignment = 1
+
+[node name="TowerDefenseTile110" type="Sprite2D" parent="Upgrade/Upgrade/HBoxContainer/Range"]
+self_modulate = Color(0.716296, 0.716296, 0.716296, 1)
+position = Vector2(63, 63)
+texture = ExtResource("3_teomk")
+
+[node name="AttackSpeed" type="Button" parent="Upgrade/Upgrade/HBoxContainer"]
+custom_minimum_size = Vector2(125, 125)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_k3m8x")
+theme_override_styles/hover = SubResource("StyleBoxFlat_teomk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0l2l6")
+theme_override_styles/normal = SubResource("StyleBoxFlat_57jmk")
+
+[node name="Label2" type="Label" parent="Upgrade/Upgrade/HBoxContainer/AttackSpeed"]
+layout_mode = 0
+offset_top = 155.0
+offset_right = 125.0
+offset_bottom = 178.0
+text = "10000"
+horizontal_alignment = 1
+
+[node name="TowerDefenseTile297" type="Sprite2D" parent="Upgrade/Upgrade/HBoxContainer/AttackSpeed"]
+position = Vector2(63, 63)
+texture = ExtResource("4_0l2l6")
+
+[node name="Power" type="Button" parent="Upgrade/Upgrade/HBoxContainer"]
+custom_minimum_size = Vector2(125, 125)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_k3m8x")
+theme_override_styles/hover = SubResource("StyleBoxFlat_teomk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0l2l6")
+theme_override_styles/normal = SubResource("StyleBoxFlat_57jmk")
+
+[node name="Label3" type="Label" parent="Upgrade/Upgrade/HBoxContainer/Power"]
+layout_mode = 0
+offset_top = 155.0
+offset_right = 125.0
+offset_bottom = 178.0
+text = "10000"
+horizontal_alignment = 1
+
+[node name="TowerDefenseTile296" type="Sprite2D" parent="Upgrade/Upgrade/HBoxContainer/Power"]
+position = Vector2(63, 63)
+texture = ExtResource("5_57jmk")
+
+[node name="ProgressBar" type="ProgressBar" parent="Upgrade"]
+offset_left = -32.0
+offset_top = 55.0
+offset_right = 32.0
+offset_bottom = 65.0
+theme_override_styles/background = SubResource("StyleBoxFlat_k3m8x")
+theme_override_styles/fill = SubResource("StyleBoxFlat_nig4x")
+show_percentage = false
+script = SubResource("GDScript_1kvkb")
+
+[node name="Timer" type="Timer" parent="Upgrade/ProgressBar"]
+wait_time = 3.0
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="body_entered" from="Tower" to="." method="_on_tower_body_entered"]
 [connection signal="body_exited" from="Tower" to="." method="_on_tower_body_exited"]
+[connection signal="mouse_entered" from="Upgrade/Upgrade/HBoxContainer/Range" to="." method="_on_range_mouse_entered"]
+[connection signal="mouse_exited" from="Upgrade/Upgrade/HBoxContainer/Range" to="." method="_on_range_mouse_exited"]
+[connection signal="pressed" from="Upgrade/Upgrade/HBoxContainer/Range" to="." method="_on_range_pressed"]
+[connection signal="pressed" from="Upgrade/Upgrade/HBoxContainer/AttackSpeed" to="." method="_on_attack_speed_pressed"]
+[connection signal="pressed" from="Upgrade/Upgrade/HBoxContainer/Power" to="." method="_on_power_pressed"]
+[connection signal="timeout" from="Upgrade/ProgressBar/Timer" to="." method="_on_timer_timeout"]
