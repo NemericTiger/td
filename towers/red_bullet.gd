@@ -6,6 +6,10 @@ var Speed = 3000
 var pathName = ""
 var bulletDamage
 
+func _ready() -> void:
+	Game.Soldier_A_dead.connect(_delete)
+
+
 func _physics_process(_delta: float):
 	var pathSpawnerNode = get_tree().get_root().get_node("Main/PathSpawner")
 	
@@ -13,6 +17,7 @@ func _physics_process(_delta: float):
 		if pathSpawnerNode.get_child(i).name == pathName:
 			target = pathSpawnerNode.get_child(i).get_child(0).get_child(0).global_position
 
+	
 	velocity = global_position.direction_to(target) * Speed
 
 
@@ -20,6 +25,8 @@ func _physics_process(_delta: float):
 	
 	move_and_slide()
 
+func _delete():
+	queue_free()
 
 func _on_area_2d_body_entered(body):
 	if "Soldier_A" in body.name:
