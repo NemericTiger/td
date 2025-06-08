@@ -5,9 +5,13 @@ var target
 var Speed = 3000
 var pathName = ""
 var bulletDamage
+var curr = true
 
 func _ready() -> void:
-	Game.connect("Soldier_A_dead", _delete)
+	Game.connect("Soldier_A_dead", delete)
+
+func delete():
+	curr = false
 
 
 func _physics_process(_delta: float):
@@ -17,16 +21,14 @@ func _physics_process(_delta: float):
 		if pathSpawnerNode.get_child(i).name == pathName:
 			target = pathSpawnerNode.get_child(i).get_child(0).get_child(0).global_position
 
-	
-	velocity = global_position.direction_to(target) * Speed
+	if curr == true:
+		velocity = global_position.direction_to(target) * Speed
 
 
 	look_at(target)
 	
 	move_and_slide()
 
-func _delete():
-	queue_free()
 
 func _on_area_2d_body_entered(body):
 	if "Soldier_A" in body.name:

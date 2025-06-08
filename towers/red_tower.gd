@@ -77,10 +77,7 @@ func _on_timer_timeout() -> void:
 
 
 func _on_range_pressed() -> void:
-	var towerPath = get_tree().get_root().get_node("Main/Towers")
-	for i in towerPath.get_child_count():
-		if towerPath.get_child(i).name == self.name:
-			self.range += 30
+	range += 30
 
 
 func _on_attack_speed_pressed() -> void:
@@ -97,8 +94,10 @@ func update_powers():
 	get_node("Upgrade/Upgrade/HBoxContainer/Range/Label").text = str(range)
 	get_node("Upgrade/Upgrade/HBoxContainer/AttackSpeed/Label2").text = str(3 - reload)
 	get_node("Upgrade/Upgrade/HBoxContainer/Power/Label3").text = str(bulletDamage)
-	
-	get_node("Tower/CollisionShape2D2").shape.radius = range
+	var towerPath = get_tree().get_root().get_node("Main/Towers")
+	for i in towerPath.get_child_count():
+		if towerPath.get_child(i) == self:
+			towerPath.get_child(i).get_node("Tower/CollisionShape2D2").shape.radius = range
 
 
 func _on_range_mouse_entered() -> void:

@@ -23,10 +23,10 @@ func _ready() -> void:
 func _draw() -> void:
 	var cen = Vector2(0,0)
 	var rad
-	#var towerPath = get_tree().get_root().get_node(\"Main/Towers\")
-	#for i in towerPath.get_child_count():
-	#	if towerPath.get_child(i).name == get_parent().get_parent().name:
-	rad = get_parent().get_parent().range
+	var towerPath = get_tree().get_root().get_node(\"Main/Towers\")
+	for i in towerPath.get_child_count():
+		if towerPath.get_child(i) == get_parent().get_parent():
+			rad = get_parent().get_parent().range
 	var col = Color(0, 0, 1, 0.3)
 	draw_circle(cen, rad, col)
 "
