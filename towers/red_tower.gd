@@ -12,7 +12,9 @@ var range : int = 400
 @onready var timer = get_node("Upgrade/ProgressBar/Timer")
 var startShooting = false
 
-
+func _ready() -> void:
+	get_node("Upgrade/Upgrade").hide()
+	get_node("Upgrade/ProgressBar").hide()
 
 func _process(_delta: float) -> void:
 	get_node("Upgrade/ProgressBar").global_position = self.global_position + Vector2(-32, 55)
@@ -70,11 +72,15 @@ func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 
 
 func _on_timer_timeout() -> void:
+	get_node("Upgrade/ProgressBar").show()
 	Shoot()
 
 
 func _on_range_pressed() -> void:
-	range += 30
+	var towerPath = get_tree().get_root().get_node("Main/Towers")
+	for i in towerPath.get_child_count():
+		if towerPath.get_child(i).name == self.name:
+			self.range += 30
 
 
 func _on_attack_speed_pressed() -> void:

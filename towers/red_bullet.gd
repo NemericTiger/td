@@ -7,7 +7,7 @@ var pathName = ""
 var bulletDamage
 
 func _ready() -> void:
-	Game.Soldier_A_dead.connect(_delete)
+	Game.connect("Soldier_A_dead", _delete)
 
 
 func _physics_process(_delta: float):
