@@ -1,11 +1,9 @@
-[gd_scene load_steps=6 format=4 uid="uid://d4lg8w38r61db"]
+[gd_scene load_steps=4 format=4 uid="uid://c3yeyw7yo8u5c"]
 
-[ext_resource type="Texture2D" uid="uid://l6a0bca3mtde" path="res://assets/td/Tilesheet/towerDefense_tilesheet.png" id="2_h2yge"]
-[ext_resource type="Script" uid="uid://dmsn22f745hbh" path="res://path_spawner.gd" id="3_h2yge"]
-[ext_resource type="PackedScene" uid="uid://bc4o5sdbld5u5" path="res://ui.tscn" id="4_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://l6a0bca3mtde" path="res://assets/td/Tilesheet/towerDefense_tilesheet.png" id="1_06t4h"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w5654"]
-texture = ExtResource("2_h2yge")
+texture = ExtResource("1_06t4h")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 1:0/0 = 0
@@ -4433,7 +4431,7 @@ terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_w5654")
 
-[node name="Main" type="Node2D"]
+[node name="MainMenu" type="Node2D"]
 
 [node name="Layer0" type="TileMapLayer" parent="."]
 use_parent_material = true
@@ -4441,14 +4439,37 @@ tile_map_data = PackedByteArray("AAAAAAAAAAAEAAUAAAABAAAAAAAEAAUAAAACAAAAAAAEAAU
 tile_set = SubResource("TileSet_2crvv")
 rendering_quadrant_size = 64
 
-[node name="PathSpawner" type="Node2D" parent="."]
-script = ExtResource("3_h2yge")
+[node name="Panel" type="Panel" parent="."]
+offset_left = 512.0
+offset_top = 256.0
+offset_right = 3072.0
+offset_bottom = 1792.0
 
-[node name="Timer" type="Timer" parent="PathSpawner"]
-autostart = true
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_right = 2560.0
+offset_bottom = 512.0
+theme_override_font_sizes/font_size = 100
+text = "You chose to suffer!"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Towers" type="Node2D" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_left = 512.0
+offset_top = 1024.0
+offset_right = 3072.0
+offset_bottom = 1408.0
+theme_override_constants/separation = 510
+alignment = 1
 
-[node name="UI" parent="." instance=ExtResource("4_1bvp3")]
+[node name="Play" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(600, 250)
+layout_mode = 2
+theme_override_font_sizes/font_size = 100
+text = "Play"
 
-[connection signal="timeout" from="PathSpawner/Timer" to="PathSpawner" method="_on_timer_timeout"]
+[node name="Quit" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(600, 250)
+layout_mode = 2
+theme_override_font_sizes/font_size = 100
+text = "Quit"

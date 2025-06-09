@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="td"
-run/main_scene="uid://c3yeyw7yo8u5c"
+run/main_scene="uid://gtvi4il4j0ld"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
@@ -26,6 +26,7 @@ window/size/viewport_height=2048
 window/size/window_width_override=1194
 window/size/window_height_override=682
 window/stretch/mode="viewport"
+mouse_cursor/custom_image="uid://bju3mj8bwn5ij"
 
 [rendering]
 

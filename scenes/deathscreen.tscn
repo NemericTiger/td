@@ -1,9 +1,9 @@
-[gd_scene load_steps=6 format=4 uid="uid://c3yeyw7yo8u5c"]
+[gd_scene load_steps=4 format=4 uid="uid://cw4wg6nf56c0v"]
 
-[ext_resource type="Texture2D" uid="uid://l6a0bca3mtde" path="res://assets/td/Tilesheet/towerDefense_tilesheet.png" id="1_06t4h"]
+[ext_resource type="Texture2D" uid="uid://l6a0bca3mtde" path="res://assets/td/Tilesheet/towerDefense_tilesheet.png" id="1_0ajwu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w5654"]
-texture = ExtResource("1_06t4h")
+texture = ExtResource("1_0ajwu")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 1:0/0 = 0
@@ -4431,24 +4431,7 @@ terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_w5654")
 
-[sub_resource type="GDScript" id="GDScript_06t4h"]
-script/source = "extends Button
-
-
-
-func _on_pressed() -> void:
-	get_tree().change_scene_to_file(\"res://main.tscn\")
-"
-
-[sub_resource type="GDScript" id="GDScript_7vrkn"]
-script/source = "extends Button
-
-
-func _on_pressed() -> void:
-	get_tree().quit()
-"
-
-[node name="MainMenu" type="Node2D"]
+[node name="Deathscreen" type="Node2D"]
 
 [node name="Layer0" type="TileMapLayer" parent="."]
 use_parent_material = true
@@ -4456,42 +4439,23 @@ tile_map_data = PackedByteArray("AAAAAAAAAAAEAAUAAAABAAAAAAAEAAUAAAACAAAAAAAEAAU
 tile_set = SubResource("TileSet_2crvv")
 rendering_quadrant_size = 64
 
-[node name="Panel" type="Panel" parent="."]
+[node name="HB" type="HBoxContainer" parent="."]
 offset_left = 512.0
-offset_top = 256.0
+offset_top = 704.0
 offset_right = 3072.0
-offset_bottom = 1792.0
-
-[node name="Label" type="Label" parent="Panel"]
-layout_mode = 0
-offset_right = 2560.0
-offset_bottom = 512.0
-theme_override_font_sizes/font_size = 100
-text = "You chose to suffer!"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-offset_left = 512.0
-offset_top = 1024.0
-offset_right = 3072.0
-offset_bottom = 1408.0
-theme_override_constants/separation = 510
+offset_bottom = 1152.0
+theme_override_constants/separation = 512
 alignment = 1
 
-[node name="Play" type="Button" parent="HBoxContainer"]
-custom_minimum_size = Vector2(600, 250)
-layout_mode = 2
-theme_override_font_sizes/font_size = 100
-text = "Play"
-script = SubResource("GDScript_06t4h")
-
-[node name="Quit" type="Button" parent="HBoxContainer"]
-custom_minimum_size = Vector2(600, 250)
+[node name="Quit" type="Button" parent="HB"]
+custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 100
 text = "Quit"
-script = SubResource("GDScript_7vrkn")
 
-[connection signal="pressed" from="HBoxContainer/Play" to="HBoxContainer/Play" method="_on_pressed"]
-[connection signal="pressed" from="HBoxContainer/Quit" to="HBoxContainer/Quit" method="_on_pressed"]
+[node name="Restart" type="Button" parent="HB"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 100
+text = "Restart
+"
