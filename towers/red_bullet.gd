@@ -1,3 +1,4 @@
+class_name Bullet
 extends CharacterBody2D
 
 
@@ -7,15 +8,16 @@ var pathName = ""
 var bulletDamage
 var curr = true
 
-func _ready() -> void:
+func _ready():
 	Game.connect("Soldier_A_dead", delete)
 
 func delete():
+	print("dead")
 	curr = false
 
 
 func _physics_process(_delta: float):
-	var pathSpawnerNode = get_tree().get_root().get_node("Main/PathSpawner")
+	var pathSpawnerNode = get_tree().get_root().get_node("SceneHandler/Main/PathSpawner")
 	
 	for i in pathSpawnerNode.get_child_count():
 		if pathSpawnerNode.get_child(i).name == pathName:

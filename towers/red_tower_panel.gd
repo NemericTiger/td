@@ -3,6 +3,9 @@ extends Panel
 @onready var tower = preload("res://towers/red_tower.tscn")
 var currTile
 @export var cost = 10
+var tower_count = 0
+
+
 
 func _on_gui_input(event: InputEvent) -> void:
 	if Game.Gold >= cost:
@@ -16,13 +19,13 @@ func _on_gui_input(event: InputEvent) -> void:
 		elif event is InputEventMouseMotion and event.button_mask == 1:
 			#if get_child_count() > 1:
 			get_child(1).global_position = event.global_position
-			var mapPath = get_tree().get_root().get_node("Main/Layer0")
+			var mapPath = get_tree().get_root().get_node("SceneHandler/Main/Layer0")
 			var tile = mapPath.local_to_map(get_global_mouse_position())
 			currTile = mapPath.get_cell_atlas_coords(tile)
 			var targets = get_child(1).get_node("TowerDetector").get_overlapping_bodies()
 			
 			
-			if currTile == Vector2i(4,5):
+			if currTile == Vector2i(4,5) and event.global_position.x < 2944:
 				if targets.size() > 0:
 					get_child(1).get_node("Area").modulate = Color(255,0,0)
 				else:
@@ -41,12 +44,14 @@ func _on_gui_input(event: InputEvent) -> void:
 					get_child(1).queue_free()
 					
 				if currTile == Vector2i(4,5):
-					var path = get_tree().get_root().get_node("Main/Towers")
+					var path = get_tree().get_root().get_node("SceneHandler/Main/Towers")
 					var targets = get_child(1).get_node("TowerDetector").get_overlapping_bodies()
 					if targets.size() < 1:
 						path.add_child(tempTower)
+						tower_count += 1
 						tempTower.global_position = event.global_position
 						tempTower.get_node("Area").hide()
+						tempTower.set_name("RedTower" + str(tower_count))
 						Game.Gold -= cost
 	else:
 		if get_child_count() > 1:

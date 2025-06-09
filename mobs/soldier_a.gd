@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var speed = 2000
+@export var speed = 200
 @export var Health = 10
 
 func _process(delta: float):
@@ -17,4 +17,10 @@ func _process(delta: float):
 
 func death():
 	Game.Soldier_A_dead.emit()
+	#for i in get_tree().get_root().get_nodes_in_group("Bullet"):
+		#if i.pathName == get_parent().name:
+			#i.queue_free()
+	#
+	#
+	#
 	get_parent().get_parent().queue_free()

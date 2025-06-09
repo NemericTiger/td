@@ -23,7 +23,7 @@ func _ready() -> void:
 func _draw() -> void:
 	var cen = Vector2(0,0)
 	var rad
-	var towerPath = get_tree().get_root().get_node(\"Main/Towers\")
+	var towerPath = get_tree().get_root().get_node(\"SceneHandler/Main/Towers\")
 	for i in towerPath.get_child_count():
 		if towerPath.get_child(i) == get_parent().get_parent():
 			rad = get_parent().get_parent().range

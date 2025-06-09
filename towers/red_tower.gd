@@ -6,6 +6,8 @@ var pathName
 var currTargets = []
 var curr
 
+var tower_name = self
+
 var reload = 0
 var range : int = 400
 
@@ -63,7 +65,7 @@ func _on_tower_body_exited(_body):
 
 func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_mask == 1:
-		var towerPath = get_tree().get_root().get_node("Main/Towers")
+		var towerPath = get_tree().get_root().get_node("SceneHandler/Main/Towers")
 		for i in towerPath.get_child_count():
 			if towerPath.get_child(i).name != self.name:
 				towerPath.get_child(i).get_node("Upgrade/Upgrade").hide()
@@ -77,12 +79,17 @@ func _on_timer_timeout() -> void:
 
 
 func _on_range_pressed() -> void:
+	var control = Node.new()
+	control.set_name("Test")
+	add_child(control)
 	range += 30
 
 
 func _on_attack_speed_pressed() -> void:
 	if reload <= 2:
-		reload += 0.1
+		reload += 0.2
+	elif reload > 2:
+		reload = 2
 	timer.wait_time = 3 - reload
 
 
@@ -94,10 +101,7 @@ func update_powers():
 	get_node("Upgrade/Upgrade/HBoxContainer/Range/Label").text = str(range)
 	get_node("Upgrade/Upgrade/HBoxContainer/AttackSpeed/Label2").text = str(3 - reload)
 	get_node("Upgrade/Upgrade/HBoxContainer/Power/Label3").text = str(bulletDamage)
-	var towerPath = get_tree().get_root().get_node("Main/Towers")
-	for i in towerPath.get_child_count():
-		if towerPath.get_child(i) == self:
-			towerPath.get_child(i).get_node("Tower/CollisionShape2D2").shape.radius = range
+	tower_name.get_node("Tower/CollisionShape2D2").shape.radius = range
 
 
 func _on_range_mouse_entered() -> void:
