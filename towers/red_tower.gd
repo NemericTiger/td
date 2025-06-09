@@ -6,11 +6,12 @@ var pathName
 var currTargets = []
 var curr
 
-var tower_name = self
+var tower_name
 
 var reload = 0
 var range : int = 400
 
+@onready var range_upgrade = preload("res://towers/range_upgrade.tscn")
 @onready var timer = get_node("Upgrade/ProgressBar/Timer")
 var startShooting = false
 
@@ -63,7 +64,7 @@ func _on_tower_body_exited(_body):
 	currTargets = get_node("Tower").get_overlapping_bodies()
 
 
-func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.button_mask == 1:
 		var towerPath = get_tree().get_root().get_node("SceneHandler/Main/Towers")
 		for i in towerPath.get_child_count():
@@ -77,12 +78,15 @@ func _on_timer_timeout() -> void:
 	get_node("Upgrade/ProgressBar").show()
 	Shoot()
 
-
-func _on_range_pressed() -> void:
-	var control = Node.new()
-	control.set_name("Test")
-	add_child(control)
-	range += 30
+#
+#func _on_range_pressed() -> void:
+	##var control = Node.new()
+	##control.set_name("Test")
+	#var temp_range = range_upgrade.instantiate()
+	#get_node("Range").add_child(temp_range)
+	#
+	##get_node("Tower/CollisionShape2D2").upgrade()
+	##get_parent().upgrade(tower_name)
 
 
 func _on_attack_speed_pressed() -> void:
@@ -101,7 +105,8 @@ func update_powers():
 	get_node("Upgrade/Upgrade/HBoxContainer/Range/Label").text = str(range)
 	get_node("Upgrade/Upgrade/HBoxContainer/AttackSpeed/Label2").text = str(3 - reload)
 	get_node("Upgrade/Upgrade/HBoxContainer/Power/Label3").text = str(bulletDamage)
-	tower_name.get_node("Tower/CollisionShape2D2").shape.radius = range
+	#var range_upgrade_count = get_node("Range").get_child_count()
+	#get_node("Tower/CollisionShape2D2").shape.radius = range + range_upgrade_count * 30
 
 
 func _on_range_mouse_entered() -> void:

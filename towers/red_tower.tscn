@@ -29,6 +29,9 @@ func _draw() -> void:
 			rad = get_parent().get_parent().range
 	var col = Color(0, 0, 1, 0.3)
 	draw_circle(cen, rad, col)
+
+#func upgrade():
+	#self.shape.radius = get_parent().get_parent().range
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_teomk"]
@@ -170,6 +173,7 @@ theme_override_constants/separation = 67
 alignment = 1
 
 [node name="Range" type="Button" parent="Upgrade/Upgrade/HBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(125, 125)
 layout_mode = 2
 theme_override_styles/focus = SubResource("StyleBoxEmpty_k3m8x")
@@ -242,6 +246,8 @@ script = SubResource("GDScript_1kvkb")
 
 [node name="Timer" type="Timer" parent="Upgrade/ProgressBar"]
 wait_time = 3.0
+
+[node name="Range" type="Node" parent="."]
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="body_entered" from="Tower" to="." method="_on_tower_body_entered"]

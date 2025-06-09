@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=4 uid="uid://d4lg8w38r61db"]
+[gd_scene load_steps=8 format=4 uid="uid://d4lg8w38r61db"]
 
 [ext_resource type="Texture2D" uid="uid://l6a0bca3mtde" path="res://assets/td/Tilesheet/towerDefense_tilesheet.png" id="1_sugp2"]
+[ext_resource type="Script" uid="uid://dyhingy6tgvpi" path="res://scenes/main.gd" id="1_tbgi4"]
 [ext_resource type="Script" uid="uid://dmsn22f745hbh" path="res://path_spawner.gd" id="2_jyhfs"]
+[ext_resource type="Script" uid="uid://xujaqdkqah0d" path="res://scenes/towers.gd" id="3_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://bc4o5sdbld5u5" path="res://ui.tscn" id="3_tbgi4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w5654"]
@@ -4434,6 +4436,7 @@ terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_w5654")
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_tbgi4")
 
 [node name="Layer0" type="TileMapLayer" parent="."]
 use_parent_material = true
@@ -4448,6 +4451,7 @@ script = ExtResource("2_jyhfs")
 autostart = true
 
 [node name="Towers" type="Node2D" parent="."]
+script = ExtResource("3_jyhfs")
 
 [node name="UI" parent="." instance=ExtResource("3_tbgi4")]
 

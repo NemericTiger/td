@@ -2,7 +2,7 @@ extends Node
 
 
 var Gold = 100
-var Health = 20
+var Health = 200
 
 signal Soldier_A_dead
 

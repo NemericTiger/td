@@ -13,7 +13,7 @@ func _ready():
 
 func delete():
 	print("dead")
-	curr = false
+	queue_free()
 
 
 func _physics_process(_delta: float):
@@ -23,8 +23,8 @@ func _physics_process(_delta: float):
 		if pathSpawnerNode.get_child(i).name == pathName:
 			target = pathSpawnerNode.get_child(i).get_child(0).get_child(0).global_position
 
-	if curr == true:
-		velocity = global_position.direction_to(target) * Speed
+
+	velocity = global_position.direction_to(target) * Speed
 
 
 	look_at(target)

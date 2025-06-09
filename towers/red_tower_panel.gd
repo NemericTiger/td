@@ -52,6 +52,9 @@ func _on_gui_input(event: InputEvent) -> void:
 						tempTower.global_position = event.global_position
 						tempTower.get_node("Area").hide()
 						tempTower.set_name("RedTower" + str(tower_count))
+						tempTower.tower_name = "RedTower" + str(tower_count)
+						#tempTower.range = 400
+						#tempTower.get_node("Tower/CollisionShape2D2").shape.radius = 400
 						Game.Gold -= cost
 	else:
 		if get_child_count() > 1:
