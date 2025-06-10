@@ -90,9 +90,9 @@ func _on_timer_timeout() -> void:
 
 
 func _on_attack_speed_pressed() -> void:
-	if reload <= 2:
+	if reload < 2:
 		reload += 0.2
-	elif reload > 2:
+	elif reload >= 2:
 		reload = 2
 	timer.wait_time = 3 - reload
 
