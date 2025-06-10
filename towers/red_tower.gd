@@ -78,27 +78,32 @@ func _on_timer_timeout() -> void:
 	get_node("Upgrade/ProgressBar").show()
 	Shoot()
 
-#
-#func _on_range_pressed() -> void:
-	##var control = Node.new()
-	##control.set_name("Test")
+
+func _on_range_pressed() -> void:
+	get_node("Tower/CollisionShape2D2").upgrade()
+	#var control = Node.new()
+	#control.set_name("Test")
 	#var temp_range = range_upgrade.instantiate()
-	#get_node("Range").add_child(temp_range)
+	#get_node("Tower/CollisionShape2D2/Range").add_child(control)
 	#
-	##get_node("Tower/CollisionShape2D2").upgrade()
-	##get_parent().upgrade(tower_name)
+	#get_node("Tower/CollisionShape2D2").upgrade()
+	#get_parent().upgrade(tower_name)
 
 
 func _on_attack_speed_pressed() -> void:
-	if reload < 2:
-		reload += 0.2
-	elif reload >= 2:
-		reload = 2
-	timer.wait_time = 3 - reload
+	if Game.Gold >= 10:
+		if reload < 2:
+			reload += 0.2
+		elif reload >= 2:
+			reload = 2
+		timer.wait_time = 3 - reload
+		Game.Gold -= 10
 
 
 func _on_power_pressed() -> void:
-	bulletDamage += 1
+	if Game.Gold >= 10:
+		bulletDamage += 1
+		Game.Gold -= 10
 
 
 func update_powers():

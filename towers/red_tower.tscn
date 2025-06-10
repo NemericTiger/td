@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://x6yotk7wn6kj"]
+[gd_scene load_steps=20 format=3 uid="uid://x6yotk7wn6kj"]
 
 [ext_resource type="Script" uid="uid://bk804yw8uynbt" path="res://towers/red_tower.gd" id="1_1kvkb"]
 [ext_resource type="Texture2D" uid="uid://c8ag2x3qjhgfx" path="res://assets/td/PNG/Default size/towerDefense_tile110.png" id="3_teomk"]
 [ext_resource type="Texture2D" uid="uid://br8kbo3nvl78w" path="res://assets/td/PNG/Default size/towerDefense_tile297.png" id="4_0l2l6"]
+[ext_resource type="Texture2D" uid="uid://c8b64cdeshfsf" path="res://assets/td/PNG/Default size/towerDefense_tile275.png" id="5_0l2l6"]
 [ext_resource type="Texture2D" uid="uid://cark5rikwntyk" path="res://assets/td/PNG/Default size/towerDefense_tile296.png" id="5_57jmk"]
 [ext_resource type="Texture2D" uid="uid://d030g132c5aww" path="res://assets/tanks/PNG/Retina/specialBarrel2_outline.png" id="5_ybfvv"]
 
@@ -31,7 +32,9 @@ func _draw() -> void:
 	draw_circle(cen, rad, col)
 
 #func upgrade():
-	#self.shape.radius = get_parent().get_parent().range
+	#var node = Node.new()
+	#get_child(0).add_child(node)
+	#self.shape.radius = get_parent().get_parent().range + get_child(0).get_child_count() * 30
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_teomk"]
@@ -135,6 +138,8 @@ position = Vector2(56, 0)
 shape = SubResource("CircleShape2D_1kvkb")
 script = SubResource("GDScript_hqlww")
 
+[node name="Range" type="Node" parent="Tower/CollisionShape2D2"]
+
 [node name="TowerDetector" type="Area2D" parent="."]
 process_mode = 3
 collision_layer = 3
@@ -158,23 +163,24 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_1kvkb")
 [node name="Upgrade" type="Node" parent="."]
 
 [node name="Upgrade" type="Panel" parent="Upgrade"]
-offset_left = -320.0
-offset_top = 64.0
-offset_right = 320.0
-offset_bottom = 320.0
+offset_left = -384.0
+offset_top = 65.0
+offset_right = 256.0
+offset_bottom = 321.0
+scale = Vector2(1.2, 1.2)
 theme_override_styles/panel = SubResource("StyleBoxFlat_hqlww")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Upgrade/Upgrade"]
 layout_mode = 0
-offset_top = 32.0
+offset_top = 46.0
 offset_right = 640.0
-offset_bottom = 157.0
+offset_bottom = 206.0
 theme_override_constants/separation = 67
 alignment = 1
 
 [node name="Range" type="Button" parent="Upgrade/Upgrade/HBoxContainer"]
 visible = false
-custom_minimum_size = Vector2(125, 125)
+custom_minimum_size = Vector2(160, 160)
 layout_mode = 2
 theme_override_styles/focus = SubResource("StyleBoxEmpty_k3m8x")
 theme_override_styles/hover = SubResource("StyleBoxFlat_teomk")
@@ -183,9 +189,9 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_57jmk")
 
 [node name="Label" type="Label" parent="Upgrade/Upgrade/HBoxContainer/Range"]
 layout_mode = 0
-offset_top = 155.0
+offset_top = 129.0
 offset_right = 125.0
-offset_bottom = 178.0
+offset_bottom = 152.0
 text = "10000"
 horizontal_alignment = 1
 
@@ -195,7 +201,7 @@ position = Vector2(63, 63)
 texture = ExtResource("3_teomk")
 
 [node name="AttackSpeed" type="Button" parent="Upgrade/Upgrade/HBoxContainer"]
-custom_minimum_size = Vector2(125, 125)
+custom_minimum_size = Vector2(160, 160)
 layout_mode = 2
 theme_override_styles/focus = SubResource("StyleBoxEmpty_k3m8x")
 theme_override_styles/hover = SubResource("StyleBoxFlat_teomk")
@@ -204,18 +210,32 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_57jmk")
 
 [node name="Label2" type="Label" parent="Upgrade/Upgrade/HBoxContainer/AttackSpeed"]
 layout_mode = 0
-offset_top = 155.0
-offset_right = 125.0
-offset_bottom = 178.0
+offset_left = 14.0
+offset_top = 160.0
+offset_right = 139.0
+offset_bottom = 183.0
+theme_override_font_sizes/font_size = 25
 text = "10000"
 horizontal_alignment = 1
 
 [node name="TowerDefenseTile297" type="Sprite2D" parent="Upgrade/Upgrade/HBoxContainer/AttackSpeed"]
-position = Vector2(63, 63)
+position = Vector2(80, 80)
+scale = Vector2(1.7, 1.7)
 texture = ExtResource("4_0l2l6")
 
+[node name="Label" type="Label" parent="Upgrade/Upgrade/HBoxContainer/AttackSpeed/TowerDefenseTile297"]
+offset_left = 0.333333
+offset_top = 18.3333
+offset_right = 40.3333
+offset_bottom = 41.3333
+text = "10"
+
+[node name="TowerDefenseTile275" type="Sprite2D" parent="Upgrade/Upgrade/HBoxContainer/AttackSpeed/TowerDefenseTile297"]
+position = Vector2(30.3333, 30.3333)
+texture = ExtResource("5_0l2l6")
+
 [node name="Power" type="Button" parent="Upgrade/Upgrade/HBoxContainer"]
-custom_minimum_size = Vector2(125, 125)
+custom_minimum_size = Vector2(160, 160)
 layout_mode = 2
 theme_override_styles/focus = SubResource("StyleBoxEmpty_k3m8x")
 theme_override_styles/hover = SubResource("StyleBoxFlat_teomk")
@@ -224,15 +244,29 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_57jmk")
 
 [node name="Label3" type="Label" parent="Upgrade/Upgrade/HBoxContainer/Power"]
 layout_mode = 0
-offset_top = 155.0
-offset_right = 125.0
-offset_bottom = 178.0
+offset_left = 23.0
+offset_top = 160.0
+offset_right = 148.0
+offset_bottom = 183.0
+theme_override_font_sizes/font_size = 25
 text = "10000"
 horizontal_alignment = 1
 
 [node name="TowerDefenseTile296" type="Sprite2D" parent="Upgrade/Upgrade/HBoxContainer/Power"]
-position = Vector2(63, 63)
+position = Vector2(80, 80)
+scale = Vector2(1.7, 1.7)
 texture = ExtResource("5_57jmk")
+
+[node name="Label2" type="Label" parent="Upgrade/Upgrade/HBoxContainer/Power/TowerDefenseTile296"]
+offset_left = -0.499996
+offset_top = 18.3333
+offset_right = 39.5
+offset_bottom = 41.3333
+text = "10"
+
+[node name="TowerDefenseTile276" type="Sprite2D" parent="Upgrade/Upgrade/HBoxContainer/Power/TowerDefenseTile296"]
+position = Vector2(29.5, 30.3333)
+texture = ExtResource("5_0l2l6")
 
 [node name="ProgressBar" type="ProgressBar" parent="Upgrade"]
 offset_left = -32.0
@@ -246,8 +280,6 @@ script = SubResource("GDScript_1kvkb")
 
 [node name="Timer" type="Timer" parent="Upgrade/ProgressBar"]
 wait_time = 3.0
-
-[node name="Range" type="Node" parent="."]
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="body_entered" from="Tower" to="." method="_on_tower_body_entered"]

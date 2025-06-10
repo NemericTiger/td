@@ -8,13 +8,6 @@ var pathName = ""
 var bulletDamage
 var curr = true
 
-#func _ready():
-	#Game.connect("Soldier_A_dead", delete)
-
-#func delete():
-	#print("dead")
-	#self.free()
-
 
 func _physics_process(_delta: float):
 	var pathSpawnerNode = get_tree().get_root().get_node("SceneHandler/Main/PathSpawner")
@@ -32,8 +25,6 @@ func _physics_process(_delta: float):
 
 	else:
 		self.free()
-
-
 
 
 func _on_area_2d_body_entered(body):
