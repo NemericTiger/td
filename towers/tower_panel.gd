@@ -1,8 +1,10 @@
 extends Panel
 
-@onready var tower = preload("res://towers/red_tower.tscn")
+@export var tower_type : String
+@onready var tower = load("res://towers/" + tower_type + ".tscn")
 var currTile
 @export var cost = 10
+
 var tower_count = 0
 
 
@@ -51,11 +53,16 @@ func _on_gui_input(event: InputEvent) -> void:
 						tower_count += 1
 						tempTower.global_position = event.global_position
 						tempTower.get_node("Area").hide()
-						tempTower.set_name("RedTower" + str(tower_count))
-						tempTower.tower_name = "RedTower" + str(tower_count)
-						tempTower.range = 400
+						tempTower.set_name(str(tower_type) + str(tower_count))
+						tempTower.tower_name = str(tower_type) + str(tower_count)
+						#tempTower.range = 400
 						#tempTower.get_node("Tower/CollisionShape2D2").shape.radius = 400
 						#tempTower.get_node("Tower/CollisionShape2D2").upgrade()
+						tempTower.type = tower_type
+						print(tower_type)
+						tempTower.on_built()
+						
+						
 						Game.Gold -= cost
 	else:
 		if get_child_count() > 1:
