@@ -62,9 +62,8 @@ func _on_tower_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Enemies"):
 		var tempArray = []
 		currTargets = get_node("Tower").get_overlapping_bodies()
-		
 		for i in currTargets:
-			if "e" in i.name:
+			if i.is_in_group("Enemies"):
 				tempArray.append(i)
 		var currTarget = null
 		
@@ -72,7 +71,6 @@ func _on_tower_body_entered(body: Node2D) -> void:
 			if currTarget == null:
 				currTarget = i.get_node("../")
 			else:
-				print(i.get_parent())
 				if i.get_parent().get_progress() > currTarget.get_progress():
 					currTarget = i.get_node("../")
 		
