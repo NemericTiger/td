@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://d23h4gbet441u"]
 
-[ext_resource type="Script" uid="uid://c8oi7am2ddyc3" path="res://mobs/soldier_a.gd" id="1_0ax2f"]
-[ext_resource type="Texture2D" uid="uid://b607p001b0ruu" path="res://assets/td/PNG/Default size/towerDefense_tile245.png" id="1_841be"]
+[ext_resource type="Script" uid="uid://c8oi7am2ddyc3" path="res://enemies/e_blue_a.gd" id="1_cfjde"]
+[ext_resource type="Texture2D" uid="uid://bave2ux88gwnb" path="res://assets/own/blue/Blauer Kreis.png" id="2_cfjde"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k3m8x"]
 bg_color = Color(0.996078, 0, 0, 1)
@@ -22,9 +22,9 @@ func _process(delta: float) -> void:
 [sub_resource type="CircleShape2D" id="CircleShape2D_0ax2f"]
 radius = 13.1529
 
-[node name="Soldier_A" type="CharacterBody2D"]
+[node name="e_Blue_A" type="CharacterBody2D" groups=["Enemies"]]
 scale = Vector2(2, 2)
-script = ExtResource("1_0ax2f")
+script = ExtResource("1_cfjde")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 offset_left = -24.0
@@ -41,4 +41,5 @@ script = SubResource("GDScript_0ax2f")
 shape = SubResource("CircleShape2D_0ax2f")
 
 [node name="TowerDefenseTile245" type="Sprite2D" parent="."]
-texture = ExtResource("1_841be")
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_cfjde")

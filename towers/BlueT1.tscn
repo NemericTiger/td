@@ -1,14 +1,14 @@
 [gd_scene load_steps=20 format=3 uid="uid://d2k3jnlreegn2"]
 
-[ext_resource type="Script" uid="uid://mepn12ij2hof" path="res://BlueT1.gd" id="1_r1e05"]
-[ext_resource type="Texture2D" uid="uid://d030g132c5aww" path="res://assets/tanks/PNG/Retina/specialBarrel2_outline.png" id="2_jbwlt"]
+[ext_resource type="Script" uid="uid://mepn12ij2hof" path="res://towers/BlueT1.gd" id="1_r1e05"]
+[ext_resource type="Texture2D" uid="uid://bj04s0cmnatxv" path="res://assets/own/blue/Blaues Sechseck.png" id="2_r1e05"]
 [ext_resource type="Texture2D" uid="uid://c8ag2x3qjhgfx" path="res://assets/td/PNG/Default size/towerDefense_tile110.png" id="3_fjrj7"]
 [ext_resource type="Texture2D" uid="uid://br8kbo3nvl78w" path="res://assets/td/PNG/Default size/towerDefense_tile297.png" id="4_a5g3o"]
 [ext_resource type="Texture2D" uid="uid://c8b64cdeshfsf" path="res://assets/td/PNG/Default size/towerDefense_tile275.png" id="5_2b27s"]
 [ext_resource type="Texture2D" uid="uid://cark5rikwntyk" path="res://assets/td/PNG/Default size/towerDefense_tile296.png" id="6_g5nw6"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rhpmq"]
-size = Vector2(72, 64)
+[sub_resource type="CircleShape2D" id="CircleShape2D_r1e05"]
+radius = 47.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1kvkb"]
 radius = 400.0
@@ -37,8 +37,8 @@ func _draw() -> void:
 	#self.shape.radius = get_parent().get_parent().range + get_child(0).get_child_count() * 30
 "
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_teomk"]
-size = Vector2(94, 66)
+[sub_resource type="CircleShape2D" id="CircleShape2D_jbwlt"]
+radius = 47.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1kvkb"]
 bg_color = Color(0.992789, 0.367969, 0, 1)
@@ -120,13 +120,12 @@ func _process(delta: float) -> void:
 script = ExtResource("1_r1e05")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-20, 0)
-shape = SubResource("RectangleShape2D_rhpmq")
+shape = SubResource("CircleShape2D_r1e05")
 
 [node name="SpecialBarrel2Outline2" type="Sprite2D" parent="."]
 rotation = -1.5708
-scale = Vector2(2, 2)
-texture = ExtResource("2_jbwlt")
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_r1e05")
 
 [node name="Aim" type="Marker2D" parent="."]
 position = Vector2(56, 0)
@@ -145,8 +144,7 @@ collision_layer = 3
 collision_mask = 3
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="TowerDetector"]
-position = Vector2(-10, 0)
-shape = SubResource("RectangleShape2D_teomk")
+shape = SubResource("CircleShape2D_jbwlt")
 
 [node name="BulletContainer" type="Node" parent="."]
 

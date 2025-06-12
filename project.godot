@@ -31,6 +31,7 @@ mouse_cursor/custom_image="uid://bju3mj8bwn5ij"
 [global_group]
 
 Bullet=""
+Enemies=""
 
 [rendering]
 

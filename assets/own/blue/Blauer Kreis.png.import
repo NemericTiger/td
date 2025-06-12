@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2ugn2cqdljl5"
-path="res://.godot/imported/pause.png-d497048eb98995ab9a2a1bb8927ffe58.ctex"
+uid="uid://bave2ux88gwnb"
+path="res://.godot/imported/Blauer Kreis.png-0f67e45bb95be0b477b85c20dcf821be.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/pause.png"
-dest_files=["res://.godot/imported/pause.png-d497048eb98995ab9a2a1bb8927ffe58.ctex"]
+source_file="res://assets/own/blue/Blauer Kreis.png"
+dest_files=["res://.godot/imported/Blauer Kreis.png-0f67e45bb95be0b477b85c20dcf821be.ctex"]
 
 [params]
 

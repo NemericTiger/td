@@ -1,8 +1,8 @@
-extends Node2D
+extends StaticBody2D
 
 var type
-@onready var Bullet = preload("res://towers/bullets/BlueT1_bullet.tscn")
-#var Bullet
+var tier
+var Bullet
 var bulletDamage
 var pathName
 var currTargets = []
@@ -32,8 +32,8 @@ func _ready() -> void:
 
 
 func on_built():
-	bulletDamage = Game.tower_data[type]["damage"]
-	#Bullet = load("res://towers/bullets/" + tower_type + "_bullet.tscn")
+	bulletDamage = Game.tower_data[type + tier]["damage"]
+	Bullet = load("res://towers/bullets/" + type + tier + "_bullet.tscn")
 	update_powers()
 
 func _process(_delta: float) -> void:
@@ -59,12 +59,12 @@ func Shoot():
 
 
 func _on_tower_body_entered(body: Node2D) -> void:
-	if "Soldier_A" in body.name:
+	if body.is_in_group("Enemies"):
 		var tempArray = []
 		currTargets = get_node("Tower").get_overlapping_bodies()
 		
 		for i in currTargets:
-			if "Soldier" in i.name:
+			if "e" in i.name:
 				tempArray.append(i)
 		var currTarget = null
 		
@@ -72,6 +72,7 @@ func _on_tower_body_entered(body: Node2D) -> void:
 			if currTarget == null:
 				currTarget = i.get_node("../")
 			else:
+				print(i.get_parent())
 				if i.get_parent().get_progress() > currTarget.get_progress():
 					currTarget = i.get_node("../")
 		

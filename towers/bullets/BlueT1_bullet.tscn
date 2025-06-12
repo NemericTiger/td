@@ -1,32 +1,30 @@
 [gd_scene load_steps=5 format=3 uid="uid://cfwjp2jija0pi"]
 
 [ext_resource type="Script" uid="uid://dmpu8f42dvsfm" path="res://towers/bullets/BlueT1_bullet.gd" id="1_hgigd"]
-[ext_resource type="Texture2D" uid="uid://crxw8olvr6574" path="res://assets/tanks/PNG/Retina/bulletRed1_outline.png" id="2_xxen2"]
+[ext_resource type="Texture2D" uid="uid://bj04s0cmnatxv" path="res://assets/own/blue/Blaues Sechseck.png" id="2_hgigd"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_obm8g"]
-radius = 9.0
-height = 52.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_xxen2"]
+radius = 19.0263
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kyp7p"]
-radius = 18.0
-height = 64.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_pegwk"]
+radius = 24.0
 
 [node name="BlueT1_bullet" type="CharacterBody2D" groups=["Bullet"]]
 script = ExtResource("1_hgigd")
 
 [node name="BulletRed1Outline" type="Sprite2D" parent="."]
 rotation = 1.5708
-scale = Vector2(2, 2)
-texture = ExtResource("2_xxen2")
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_hgigd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_obm8g")
+shape = SubResource("CircleShape2D_xxen2")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_kyp7p")
+shape = SubResource("CircleShape2D_pegwk")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

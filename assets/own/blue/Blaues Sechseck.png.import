@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bju3mj8bwn5ij"
-path="res://.godot/imported/cursor_h.png-6f4d8bbcfbeebcbd6240e86eccc4cdd2.ctex"
+uid="uid://bj04s0cmnatxv"
+path="res://.godot/imported/Blaues Sechseck.png-e2c4ecbc4d8288906d97a2fc6859f531.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/cursor_h.png"
-dest_files=["res://.godot/imported/cursor_h.png-6f4d8bbcfbeebcbd6240e86eccc4cdd2.ctex"]
+source_file="res://assets/own/blue/Blaues Sechseck.png"
+dest_files=["res://.godot/imported/Blaues Sechseck.png-e2c4ecbc4d8288906d97a2fc6859f531.ctex"]
 
 [params]
 

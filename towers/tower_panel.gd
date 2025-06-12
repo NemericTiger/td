@@ -1,13 +1,20 @@
 extends Panel
 
 @export var tower_type : String
-@onready var tower = load("res://towers/" + tower_type + ".tscn")
+@export var tier : String
+@export var texture : Texture
+@onready var tower = load("res://towers/" + tower_type + tier + ".tscn")
 var currTile
-@export var cost = 10
+var cost
 
 var tower_count = 0
 
 
+func _ready():
+	cost = Game.tower_data[tower_type + tier]["cost"]
+	get_node("Control/Label").text = str(cost)
+	#get_node("TowerSprite").scale = 0.3
+	get_node("Control/TowerSprite").set_texture(texture)
 
 func _on_gui_input(event: InputEvent) -> void:
 	if Game.Gold >= cost:
@@ -55,11 +62,8 @@ func _on_gui_input(event: InputEvent) -> void:
 						tempTower.get_node("Area").hide()
 						tempTower.set_name(str(tower_type) + str(tower_count))
 						tempTower.tower_name = str(tower_type) + str(tower_count)
-						#tempTower.range = 400
-						#tempTower.get_node("Tower/CollisionShape2D2").shape.radius = 400
-						#tempTower.get_node("Tower/CollisionShape2D2").upgrade()
 						tempTower.type = tower_type
-						print(tower_type)
+						tempTower.tier = tier
 						tempTower.on_built()
 						
 						
