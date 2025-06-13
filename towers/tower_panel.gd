@@ -19,12 +19,20 @@ func _ready():
 func _on_gui_input(event: InputEvent) -> void:
 	if Game.Gold >= cost:
 		var tempTower = tower.instantiate()
+		tempTower.set_name(str(tower_type) + str(tower_count))
+		tempTower.tower_name = str(tower_type) + str(tower_count)
+		tempTower.type = tower_type
+		tempTower.tier = tier
 		if event is InputEventMouseButton and event.button_mask == 1:
 			#mb1 down
 			add_child(tempTower)
 			tempTower.global_position = event.global_position
 			tempTower.process_mode = Node.PROCESS_MODE_DISABLED
 			tempTower.scale = Vector2(0.32, 0.32)
+			get_child(1).get_node("Area").size.x = Game.tower_data[tower_type + tier]["range"]
+			get_child(1).get_node("Area").size.y = Game.tower_data[tower_type + tier]["range"]
+			get_child(1).get_node("Area").position.x = - Game.tower_data[tower_type + tier]["range"]
+			get_child(1).get_node("Area").position.y = - Game.tower_data[tower_type + tier]["range"]
 		elif event is InputEventMouseMotion and event.button_mask == 1:
 			#if get_child_count() > 1:
 			get_child(1).global_position = event.global_position
@@ -32,8 +40,7 @@ func _on_gui_input(event: InputEvent) -> void:
 			var tile = mapPath.local_to_map(get_global_mouse_position())
 			currTile = mapPath.get_cell_atlas_coords(tile)
 			var targets = get_child(1).get_node("TowerDetector").get_overlapping_bodies()
-			
-			
+
 			if currTile == Vector2i(4,5) and event.global_position.x < 2944:
 				if targets.size() > 0:
 					get_child(1).get_node("Area").modulate = Color(255,0,0)
@@ -60,10 +67,7 @@ func _on_gui_input(event: InputEvent) -> void:
 						tower_count += 1
 						tempTower.global_position = event.global_position
 						tempTower.get_node("Area").hide()
-						tempTower.set_name(str(tower_type) + str(tower_count))
-						tempTower.tower_name = str(tower_type) + str(tower_count)
-						tempTower.type = tower_type
-						tempTower.tier = tier
+
 						tempTower.on_built()
 						
 						

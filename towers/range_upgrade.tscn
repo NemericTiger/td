@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://fkvcbwvs7t8b"]
-
-[ext_resource type="Script" uid="uid://bwr7pk12qy67t" path="res://towers/range_upgrade.gd" id="1_rtdcp"]
-
-[node name="RangeUpgrade" type="Node"]
-script = ExtResource("1_rtdcp")

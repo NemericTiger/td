@@ -13,6 +13,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_mask == 1:
 		for i in towers.get_child_count():
 			towers.get_child(i).get_node("Upgrade/Upgrade").hide()
+			towers.get_child(i).get_node("Tower/CollisionShape2D2").hide()
 	#elif event == "ui_focus_next":
 		#get_node("UI/Panel")
 

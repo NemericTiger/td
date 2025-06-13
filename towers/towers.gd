@@ -9,15 +9,19 @@ var currTargets = []
 var curr
 var tower_ready = true
 var tower_name
+var rof : float
+var max_rof
+var range
 
-var reload = 0
-var range : int = 400
-
-@onready var range_upgrade = preload("res://towers/range_upgrade.tscn")
 @onready var timer = get_node("Upgrade/ProgressBar/Timer")
 var startShooting = false
 
 func _ready() -> void:
+	bulletDamage = Game.tower_data[type + tier]["damage"]
+	Bullet = load("res://towers/bullets/" + type + tier + "_bullet.tscn")
+	rof = Game.tower_data[type + tier]["rof"]
+	max_rof = Game.tower_data[type + tier]["max_rof"]
+	range = Game.tower_data[type + tier]["range"]
 	get_node("Upgrade/Upgrade").hide()
 	get_node("Upgrade/ProgressBar").hide()
 	get_node("Upgrade/ProgressBar").global_position = self.global_position + Vector2(-32, 55)
@@ -32,8 +36,9 @@ func _ready() -> void:
 
 
 func on_built():
-	bulletDamage = Game.tower_data[type + tier]["damage"]
-	Bullet = load("res://towers/bullets/" + type + tier + "_bullet.tscn")
+
+	get_node("Upgrade/ProgressBar/Timer").wait_time = rof
+	get_node("Tower/CollisionShape2D2").shape.radius = range
 	update_powers()
 
 func _process(_delta: float) -> void:
@@ -91,6 +96,7 @@ func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> voi
 				towerPath.get_child(i).get_node("Upgrade/Upgrade").hide()
 		get_node("Upgrade/Upgrade").visible = !get_node("Upgrade/Upgrade").visible
 		get_node("Upgrade/Upgrade").global_position = self.position + Vector2(-320, 81)
+		get_node("Tower/CollisionShape2D2").visible = !get_node("Tower/CollisionShape2D2").visible
 
 
 func _on_timer_timeout() -> void:
@@ -111,11 +117,11 @@ func _on_range_pressed() -> void:
 
 func _on_attack_speed_pressed() -> void:
 	if Game.Gold >= 10:
-		if reload < 2:
-			reload += 0.2
-		elif reload >= 2:
-			reload = 2
-		timer.wait_time = 3 - reload
+		if rof < max_rof:
+			rof += 0.2
+		elif rof >= max_rof - 0.2:
+			rof = max_rof
+		timer.wait_time = rof
 		Game.Gold -= 10
 		update_powers()
 
@@ -129,7 +135,7 @@ func _on_power_pressed() -> void:
 
 func update_powers():
 	get_node("Upgrade/Upgrade/HBoxContainer/Range/Label").text = str(range)
-	get_node("Upgrade/Upgrade/HBoxContainer/AttackSpeed/Label2").text = str(3 - reload)
+	get_node("Upgrade/Upgrade/HBoxContainer/AttackSpeed/Label2").text = str(rof)
 	get_node("Upgrade/Upgrade/HBoxContainer/Power/Label3").text = str(bulletDamage)
 	#var range_upgrade_count = get_node("Range").get_child_count()
 	#get_node("Tower/CollisionShape2D2").shape.radius = range + range_upgrade_count * 30

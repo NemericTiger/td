@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bcfnmhjflhvnf"]
+
+[ext_resource type="Script" uid="uid://wwr4wbdeu4mt" path="res://towers/bullets/YellowT1_bullet.gd" id="1_pddcu"]
+[ext_resource type="Texture2D" uid="uid://33wuww8wugph" path="res://assets/own/yellow/YellowT1.png" id="2_pddcu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xxen2"]
+radius = 19.0263
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pegwk"]
+radius = 24.0
+
+[node name="YellowT1_bullet" type="CharacterBody2D" groups=["Bullet"]]
+script = ExtResource("1_pddcu")
+
+[node name="BulletRed1Outline" type="Sprite2D" parent="."]
+rotation = 1.5708
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_pddcu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CircleShape2D_xxen2")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+rotation = 1.5708
+shape = SubResource("CircleShape2D_pegwk")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

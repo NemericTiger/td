@@ -1,17 +1,17 @@
-[gd_scene load_steps=20 format=3 uid="uid://d2k3jnlreegn2"]
+[gd_scene load_steps=20 format=3 uid="uid://bcb5odgk4prt0"]
 
-[ext_resource type="Script" uid="uid://mepn12ij2hof" path="res://towers/BlueT1.gd" id="1_r1e05"]
-[ext_resource type="Texture2D" uid="uid://bj04s0cmnatxv" path="res://assets/own/blue/Blaues Sechseck.png" id="2_r1e05"]
-[ext_resource type="Texture2D" uid="uid://c8ag2x3qjhgfx" path="res://assets/td/PNG/Default size/towerDefense_tile110.png" id="3_fjrj7"]
-[ext_resource type="Texture2D" uid="uid://br8kbo3nvl78w" path="res://assets/td/PNG/Default size/towerDefense_tile297.png" id="4_a5g3o"]
-[ext_resource type="Texture2D" uid="uid://c8b64cdeshfsf" path="res://assets/td/PNG/Default size/towerDefense_tile275.png" id="5_2b27s"]
-[ext_resource type="Texture2D" uid="uid://cark5rikwntyk" path="res://assets/td/PNG/Default size/towerDefense_tile296.png" id="6_g5nw6"]
+[ext_resource type="Script" uid="uid://faayipkdxvy1" path="res://towers/RedT1.gd" id="1_kn37n"]
+[ext_resource type="Texture2D" uid="uid://bjxi2n26fkwkj" path="res://assets/own/red/RedT1.png" id="2_kn37n"]
+[ext_resource type="Texture2D" uid="uid://c8ag2x3qjhgfx" path="res://assets/td/PNG/Default size/towerDefense_tile110.png" id="3_mvxsa"]
+[ext_resource type="Texture2D" uid="uid://br8kbo3nvl78w" path="res://assets/td/PNG/Default size/towerDefense_tile297.png" id="4_wayt4"]
+[ext_resource type="Texture2D" uid="uid://c8b64cdeshfsf" path="res://assets/td/PNG/Default size/towerDefense_tile275.png" id="5_w75lh"]
+[ext_resource type="Texture2D" uid="uid://cark5rikwntyk" path="res://assets/td/PNG/Default size/towerDefense_tile296.png" id="6_4skix"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r1e05"]
 radius = 47.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1kvkb"]
-radius = 400.0
+radius = 64.0
 
 [sub_resource type="GDScript" id="GDScript_hqlww"]
 script/source = "extends CollisionShape2D
@@ -116,8 +116,8 @@ func _process(delta: float) -> void:
 	self.value = get_node(\"Timer\").time_left
 "
 
-[node name="BlueT1" type="StaticBody2D"]
-script = ExtResource("1_r1e05")
+[node name="RedT1" type="StaticBody2D"]
+script = ExtResource("1_kn37n")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_r1e05")
@@ -125,7 +125,7 @@ shape = SubResource("CircleShape2D_r1e05")
 [node name="SpecialBarrel2Outline2" type="Sprite2D" parent="."]
 rotation = -1.5708
 scale = Vector2(0.4, 0.4)
-texture = ExtResource("2_r1e05")
+texture = ExtResource("2_kn37n")
 
 [node name="Aim" type="Marker2D" parent="."]
 position = Vector2(56, 0)
@@ -196,7 +196,7 @@ horizontal_alignment = 1
 [node name="TowerDefenseTile110" type="Sprite2D" parent="Upgrade/Upgrade/HBoxContainer/Range"]
 self_modulate = Color(0.716296, 0.716296, 0.716296, 1)
 position = Vector2(63, 63)
-texture = ExtResource("3_fjrj7")
+texture = ExtResource("3_mvxsa")
 
 [node name="AttackSpeed" type="Button" parent="Upgrade/Upgrade/HBoxContainer"]
 custom_minimum_size = Vector2(160, 160)
@@ -219,7 +219,7 @@ horizontal_alignment = 1
 [node name="TowerDefenseTile297" type="Sprite2D" parent="Upgrade/Upgrade/HBoxContainer/AttackSpeed"]
 position = Vector2(80, 80)
 scale = Vector2(1.7, 1.7)
-texture = ExtResource("4_a5g3o")
+texture = ExtResource("4_wayt4")
 
 [node name="Label" type="Label" parent="Upgrade/Upgrade/HBoxContainer/AttackSpeed/TowerDefenseTile297"]
 offset_left = 0.333333
@@ -230,7 +230,7 @@ text = "10"
 
 [node name="TowerDefenseTile275" type="Sprite2D" parent="Upgrade/Upgrade/HBoxContainer/AttackSpeed/TowerDefenseTile297"]
 position = Vector2(30.3333, 30.3333)
-texture = ExtResource("5_2b27s")
+texture = ExtResource("5_w75lh")
 
 [node name="Power" type="Button" parent="Upgrade/Upgrade/HBoxContainer"]
 custom_minimum_size = Vector2(160, 160)
@@ -253,7 +253,7 @@ horizontal_alignment = 1
 [node name="TowerDefenseTile296" type="Sprite2D" parent="Upgrade/Upgrade/HBoxContainer/Power"]
 position = Vector2(80, 80)
 scale = Vector2(1.7, 1.7)
-texture = ExtResource("6_g5nw6")
+texture = ExtResource("6_4skix")
 
 [node name="Label2" type="Label" parent="Upgrade/Upgrade/HBoxContainer/Power/TowerDefenseTile296"]
 offset_left = -0.499996
@@ -264,7 +264,7 @@ text = "10"
 
 [node name="TowerDefenseTile276" type="Sprite2D" parent="Upgrade/Upgrade/HBoxContainer/Power/TowerDefenseTile296"]
 position = Vector2(29.5, 30.3333)
-texture = ExtResource("5_2b27s")
+texture = ExtResource("5_w75lh")
 
 [node name="ProgressBar" type="ProgressBar" parent="Upgrade"]
 offset_left = -32.0

@@ -20,6 +20,7 @@ rotation = 3.14159
 scale = Vector2(0.2, 0.2)
 
 [node name="Label" type="Label" parent="Control"]
+layout_mode = 0
 offset_left = 39.0
 offset_top = 54.6
 offset_right = 79.0
